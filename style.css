@@ -1,0 +1,311 @@
+/* 全局重置 */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    background: url("./img/bg0.png") no-repeat center/cover;
+    backdrop-filter: blur(8px);
+    overflow: hidden;
+    font-family: "Microsoft Yahei", sans-serif;
+    color: #fff;
+}
+
+/* 主容器：全屏布局 */
+.music-player {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 50px;
+    position: relative;
+}
+
+/* 顶部区域：唱片+标题 */
+.player-header {
+    display: flex;
+    align-items: center;
+    gap: 100px;
+    margin-bottom: 80px;
+    padding-left: 50px;
+}
+
+/* 唱片容器 */
+.disc-wrapper {
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    background-color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.disc-img {
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    background: url("./img/record0.jpg") no-repeat center/cover;
+}
+
+/* 音乐信息 */
+.song-info {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.song-name {
+    font-size: 4.5rem;
+    font-weight: 400;
+}
+
+.song-singer {
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* 底部区域 */
+.player-footer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 0 50px;
+}
+
+/* 进度条+时间 */
+.progress-wrap {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.time-show {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+    min-width: 100px;
+}
+
+.progress-track {
+    flex: 1;
+    height: 4px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.progress-current {
+    width: 0%;
+    height: 100%;
+    background-color: #00ff9d;
+}
+
+/* 控制按钮区 */
+.controls-wrap {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.control-button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+}
+
+.play-button {
+    background-color: #00ff9d;
+    border: none;
+    width: 50px;
+    height: 50px;
+}
+
+.play-button span {
+    color: #000;
+}
+
+/* 按钮图标 */
+.icon-font {
+    font-size: 1.2rem;
+    color: #fff;
+}
+
+.icon-play {
+    content: "▶";
+}
+
+.icon-pause {
+    content: "❚❚";
+}
+
+.icon-prev::before {
+    content: "◀◀";
+}
+
+.icon-next::before {
+    content: "▶▶";
+}
+
+.icon-volume::before {
+    content: "🔊";
+}
+
+.icon-loop::before {
+    content: "🔁";
+}
+
+.icon-mv::before {
+    content: "📺";
+}
+
+.icon-menu::before {
+    content: "☰";
+}
+
+/* 右侧功能区 */
+.functions-wrap {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.functions-text {
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+/* 播放列表 */
+.playlist-wrap {
+    position: absolute;
+    right: 50px;
+    bottom: 100px;
+    width: 300px;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    padding: 20px;
+    display: none;
+    z-index: 10;
+}
+
+.playlist-wrap.active {
+    display: block;
+}
+
+.playlist-header {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.playlist-items {
+    list-style: none;
+}
+
+.playlist-item {
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.playlist-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.playlist-item.playing {
+    background-color: rgba(0, 255, 157, 0.2);
+    color: #00ff9d;
+}
+
+/* MV播放器弹窗 */
+#mvModal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 100;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+#mvPlayer {
+    width: 100%;
+    max-width: 1200px;
+    border-radius: 10px;
+}
+
+.close-modal {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    font-size: 36px;
+    color: white;
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* 补充你提供的第二个CSS片段的修改版（整合后） */
+/* 如需分开使用，可单独提取以下部分并调整 */
+/* .music-player {
+    padding: 0 100px;
+}
+.player-header {
+    gap: 120px;
+    margin-bottom: 100px;
+    padding-left: 0;
+}
+.progress-track {
+    height: 6px;
+    border-radius: 3px;
+}
+.progress-current {
+    width: 30%;
+    border-radius: 3px;
+}
+.control-button {
+    width: 50px;
+    height: 50px;
+}
+.icon-img {
+    width: 25px;
+    height: 25px;
+    object-fit: contain;
+}
+.functions-wrap {
+    gap: 30px;
+}
+.volume-bar {
+    width: 100px;
+    height: 6px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+} */

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>25216950202—李洁 洛春赋 - 音乐播放器</title>
+    <link rel="stylesheet" href="style.css">
+   
+</head>
+<body>
+    
+    <div class="music-player"> <!-- player-wrap → music-player -->
+        <!-- 顶部：唱片+标题 -->
+        <div class="player-header"> <!-- top-section → player-header -->
+            <div class="disc-wrapper" id="recordContainer"> <!-- record-container → disc-wrapper -->
+                <div class="disc-img" id="recordImg"></div> <!-- record-img → disc-img -->
+            </div>
+            <div class="song-info"> <!-- music-info → song-info -->
+                <div class="song-name" id="musicTitle">洛春赋</div> <!-- music-title → song-name -->
+                <div class="song-singer" id="musicAuthor">作者：李洁</div> <!-- music-author → song-singer -->
+            </div>
+        </div>
+
+        <!-- 底部：进度条+控制按钮 -->
+        <div class="player-footer"> <!-- bottom-section → player-footer -->
+            <div class="progress-wrap"> <!-- progress-area → progress-wrap -->
+                <span class="time-show" id="timeDisplay">00:00 / 00:00</span> <!-- time-display → time-show -->
+                <div class="progress-track" id="progressBar"> <!-- progress-bar → progress-track -->
+                    <div class="progress-current" id="progressActive"></div> <!-- progress-active → progress-current -->
+                </div>
+            </div>
+
+            <div class="controls-wrap"> <!-- controls-area → controls-wrap -->
+                <button class="control-button" id="modeBtn" title="循环模式"> <!-- control-btn → control-button -->
+                    <span class="icon-font icon-loop"></span> <!-- icon → icon-font；mode-icon → icon-loop -->
+                </button>
+                <button class="control-button" id="prevBtn" title="上一首"> <!-- control-btn → control-button -->
+                    <span class="icon-font icon-prev"></span> <!-- icon → icon-font；prev-icon → icon-prev -->
+                </button>
+                <button class="control-button play-button" id="playBtn" title="播放/暂停"> <!-- control-btn → control-button；play-btn → play-button -->
+                    <span class="icon-font icon-play" id="playIcon">▶</span> <!-- icon → icon-font；play-icon → icon-play -->
+                </button>
+                <button class="control-button" id="nextBtn" title="下一首"> <!-- control-btn → control-button -->
+                    <span class="icon-font icon-next"></span> <!-- icon → icon-font；next-icon → icon-next -->
+                </button>
+                <button class="control-button" id="volumeBtn" title="音量"> <!-- control-btn → control-button -->
+                    <span class="icon-font icon-volume"></span> <!-- icon → icon-font；volume-icon → icon-volume -->
+                </button>
+
+                <!-- 右侧功能区 -->
+                <div class="functions-wrap"> <!-- func-area → functions-wrap -->
+                    <button class="control-button" id="mvBtn" title="播放MV"> <!-- control-btn → control-button -->
+                        <span class="icon-font icon-mv"></span> <!-- icon → icon-font；mv-icon → icon-mv -->
+                    </button>
+                    <span class="functions-text" id="speedBtn">1.0X</span> <!-- func-text → functions-text -->
+                    <button class="control-button" id="playlistBtn" title="播放列表"> <!-- control-btn → control-button -->
+                        <span class="icon-font icon-menu"></span> <!-- icon → icon-font；list-icon → icon-menu -->
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 播放列表 -->
+        <div class="playlist-wrap" id="playlistContainer"> <!-- playlist-container → playlist-wrap -->
+            <div class="playlist-header">播放列表</div> <!-- playlist-title → playlist-header -->
+            <ul class="playlist-items" id="playlistList"> <!-- playlist-list → playlist-items -->
+                <!-- 列表项由JS生成 -->
+            </ul>
+        </div>
+    </div>
+
+    <!-- MV播放器弹窗 -->
+    <div id="mvModal">
+        <video id="mvPlayer" controls></video>
+        <button class="close-modal" onclick="closeMV()">×</button> <!-- close-btn → close-modal -->
+    </div>
+
+    <!-- 音频元素 -->
+    <audio id="audioPlayer" preload="metadata">
+        你的浏览器不支持HTML5音频播放
+    </audio>
+    <script src="main.js"></script>
+</body>
+</html>
